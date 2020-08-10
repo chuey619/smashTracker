@@ -1,5 +1,8 @@
 # smashTracker
-in this app i will use express, node, passport, ejs, and postgres to build an app which lets you track your smash bros match history
+ in this app you can track your smash bros match history 
+ 
+# technologies 
+i used bootstrap and js for the frontend and node, express, passport, and sql for the backend. i will use moment js to keep track of the time when matches are played
 
 # how to use
 login in or sign up then start adding matches
