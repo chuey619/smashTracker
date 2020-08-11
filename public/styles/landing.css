@@ -1,0 +1,86 @@
+/* all this css is from a past project and I got it all from a tutorial video
+colt steele web dev bootcamp on udemy
+*/
+
+body {
+    background-color: #000;
+  }
+  #landing-header {
+    z-index: 1;
+    position: relative;
+    text-align: center;
+    padding-top: 40vh;
+
+  }
+  #landing-header h1 {
+    color:#dd0426;
+    font-size: 5rem;
+    -webkit-text-stroke: 1px white;
+    border-radius: 20px;
+    box-shadow: inset;
+  }
+  #landing-header button {
+      border: 3px solid red;
+      font-weight: 800;
+      
+  }
+
+  .slideshow{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .slideshow li{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    opacity: 0;
+    z-index: 0;
+    animation: imageAnimation 50s linear infinite;
+  }
+  .slideshow li:nth-child(1) { 
+    background-image: url(https://i.imgur.com/6CYnR3o.jpg); 
+ }
+  .slideshow li:nth-child(2) { 
+    background-image: url(https://i.imgur.com/iuh5JH2.jpg);
+    animation-delay: 10s; 
+  }
+  .slideshow li:nth-child(3) { 
+    background-image: url(https://i.imgur.com/aEwNXVn.jpg);
+    animation-delay: 20s; 
+  }
+  .slideshow li:nth-child(4) { 
+    background-image: url(https://i.imgur.com/8HVrVvc.png);
+    animation-delay: 30s; 
+  }
+  .slideshow li:nth-child(5) { 
+    background-image: url(https://i.imgur.com/fFeInsm.png);
+    animation-delay: 40s; 
+  }
+  @keyframes imageAnimation { 
+    0% { 
+      opacity: 0; 
+      animation-timing-function: ease-in;
+    }
+    10% {
+      opacity: 1;
+      animation-timing-function: ease-out;
+    }
+    20% {
+      opacity: 1
+    }
+    30% {
+      opacity: 0
+    }
+  }

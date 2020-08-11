@@ -1,6 +1,33 @@
-<%- include('./partials/boilerplate.ejs')  %> 
-<h1>Welcome to smashTracker!</h1>
-<a href="/auth/login">Log In!</a>
-<a href="/auth/register">Sign Up!</a>
-<button class="ui primary basic button" >test</button>
-<%- include('./partials/end.ejs')  %> 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>smashTracker</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/reset.css">
+    <link rel="stylesheet" href="styles/landing.css">
+    
+    
+    
+</head>
+<body>
+    <div class="container">
+        <div id="landing-header">
+            
+            <H1>Welcome to smashTracker!</H1>
+            <a href="/auth/login"> <button class="btn btn-lg btn-outline-danger">Log In!</button> </a>
+            <a href="/users/new"> <button class="btn btn-lg btn-outline-danger">Sign Up!</button> </a>
+        </div>
+        <ul class="slideshow">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        
+    </div>    
+</body>
+</html>
