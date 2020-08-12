@@ -5,21 +5,20 @@ const User = require("../models/User");
 const matchHelpers = {};
 matchHelpers.decideWinner = async (req, res, next) => {
   if (req.body.result == "Me") {
-    res.locals.winner = req.user.id;
-    let loser = await User.getByUsername(req.body.opponent);
-    console.log(loser);
-    if (loser != null) {
-      res.locals.loser = await loser.id;
+    res.locals.winner = req.user.username;
+    let loser = req.body.opponent;
+
+    if (loser != "") {
+      res.locals.loser = loser;
     } else {
       res.locals.loser = null;
     }
     next();
   } else {
-    res.locals.loser = req.user.id;
-    let winner = await User.getByUsername(req.body.opponent);
-    console.log(winner);
-    if (winner != null) {
-      res.locals.winner = await winner.id;
+    res.locals.loser = req.user.username;
+    let winner = req.body.opponent;
+    if (winner != "") {
+      res.locals.winner = winner;
     } else {
       res.locals.winner = null;
     }

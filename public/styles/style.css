@@ -31,9 +31,63 @@ h3 {
     padding: 10px;
 }
 ul {
-    background-color: hsla(220, 78%, 29%, 1) ;
+    background-color: white ;
 }
 footer {
     margin: 0 auto;
     text-align: center;
+}
+.matches-container {
+    height: 30%;
+    display: flex;
+    justify-content: space-evenly;
+    
+}
+
+.card {
+    max-height: 190px;
+    margin-right: 5px;
+}
+.buttons {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    
+}
+
+.card-body {
+   
+    padding: 0;
+}
+
+.card-text {
+    margin-bottom: 0;
+}
+
+.jumbotron {
+    padding: 5%;
+    background-color: white;
+}
+
+.winner {
+    background-color:rgba(63, 191, 127, 0.6) ;
+}
+
+.loser {
+    background-color: rgba(198, 16, 16, 0.62);
+}
+
+.matches-index {
+    display: flex;
+    flex-wrap: wrap;
+   justify-content: space-evenly;
+}
+.toCenter {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+.toCenter a {
+    margin: 0 auto;
 }

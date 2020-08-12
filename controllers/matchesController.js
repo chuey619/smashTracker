@@ -5,11 +5,12 @@ const moment = require("moment");
 const Character = require("../models/Character");
 const matchHelpers = require("../services/match-helpers");
 matchesController.index = (req, res, next) => {
-  Match.getAllForUser(req.user.id)
+  const username = req.user.username;
+  Match.getAllForUser(username)
     .then((matches) => {
       res.render("matches/index", {
-        message: "ok",
-        data: { matches },
+        matches,
+        username,
       });
     })
     .catch(next);
@@ -24,40 +25,38 @@ matchesController.show = (req, res, next) => {
 };
 matchesController.create = async (req, res, next) => {
   console.log(req.body);
-
   let opponent = (await User.getByUsername(req.body.opponent)) || null;
   console.log(`opponent: ${await opponent}`);
-  let opponentId;
-  let user1_charId;
-  let user2_charId;
+  let opponentName;
   if (opponent) {
-    opponentId = await opponent.id;
+    opponentName = await opponent.username;
   } else {
-    opponentId = null;
+    opponentName = null;
   }
-
   let user1_char = await Character.getByName(req.body.user1_char);
   if (user1_char) {
-    user1_charId = await user1_char.id;
+    user1_charName = await user1_char.name;
+    userUrl = await user1_char.url;
   } else {
-    user1_charId = null;
+    user1_char = null;
   }
-
   let user2_char = await Character.getByName(req.body.user2_char);
   if (user2_char) {
-    user2_charId = await user2_char.id;
+    user2_char = await user2_char.name;
+    user2Url = await user2_char.url;
   } else {
-    user2_charId = null;
+    user2_char = null;
   }
-
   await new Match({
     date: moment().format("L"),
-    user1_id: req.user.id,
-    user2_id: opponentId,
+    user1: req.user.username,
+    user2: opponentName,
     winner: res.locals.winner,
     loser: res.locals.loser,
-    user1_char: user1_charId,
-    user2_char: user2_charId,
+    user1_char: user1_charName,
+    user2_char: user2_char,
+    url1: userUrl,
+    url2: user2Url,
   }).save();
   await res.redirect("/users");
 };
@@ -74,14 +73,14 @@ matchesController.update = (req, res) => {
       res.redirect("back");
     });
 };
-matchesController.delete = (req, res) => {
+matchesController.delete = (req, res, next) => {
   Match.getById(req.params.id)
-    .then((animal) => {
-      return animal.delete;
+    .then((match) => {
+      return match.delete();
     })
     .then(() => {
       req.flash("success", "Successfully deleted the match");
-      res.redirect("/matches");
+      res.redirect("/users");
     })
     .catch(next);
 };

@@ -1,8 +1,49 @@
 
 <%- include('../partials/boilerplate.ejs')  %> 
-<% matches.forEach(match => { %>
-<h1> <%= match.winner %>  </h1>
-<% }) %>
-<h1>working</h1>
-<a href="/matches/new"> <button> record a new match </button> </a>
+<section>
+  <div class="jumbotron">
+    <h1 class="display-4">Welcome, <%= user.username %> </h1>
+    <p class="lead">View info about your matches below!</p>
+    <hr class="my-4">
+  </div>
+</section>
+<section class="player-info">
+  <h4>total wins: <%= user.wins %> </h4>
+  <h4>total losses: <%= user.losses %> </h4>
+  <h4>Best fighter: </h4>
+</section>
+<section>
+<h5>Recent matches</h5>
+<div class="matches-container">
+  
+    <% for(let i = 0;  i < matches.length && i < 5; i++) { %>
+        <div class="card" >
+            <img class="card-img-top" src=<%= matches[i].url %> alt="Card image cap">
+            <div class="card-body <% if (user.username == matches[i].winner) { %>
+              winner
+             <% } else { %>
+             loser
+            
+             <% } %>
+             ">
+              <h5 class="card-title"> <%= matches[i].user1_char %>  </h5>
+              <p class="card-text">  <%= matches[i].date %> </p>
+              <div class="buttons">
+                <a href="/matches/<%= matches[i].id %>" class="btn btn-sm btn-primary">View</a>
+                <form action="/matches/<%= matches[i].id %>?_method=DELETE" method='POST' >
+                  <button class="btn btn-sm btn-danger">Delete</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        <% } %>
+</div>
+</section>
+<a href="/matches"><button class="btn btn-lg btn-outline-primary">View all matches</button></a>
+<a href="/matches/new"> <button class="btn btn-lg btn-outline-primary"> record a new match </button> </a>
+
 <%- include('../partials/end.ejs')  %> 
+
+
+
+      

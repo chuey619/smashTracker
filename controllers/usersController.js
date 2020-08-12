@@ -3,9 +3,21 @@ const User = require("../models/User"),
 
 const Match = require("../models/Match");
 const usersController = {};
-usersController.index = (req, res, next) => {
-  Match.getAllForUser(req.user.id).then((matches) => {
-    res.render("users/index", { matches: matches });
+usersController.index = async (req, res, next) => {
+  const username = req.user.username;
+  let matches = await Match.getAllForUser(username);
+  let userMatches = await matches;
+  let losses = await Match.getTotalLossesForUser(username);
+  let userLosses = await losses[0].count;
+  let wins = await Match.getTotalWinsForUser(username);
+  let userWins = await wins[0].count;
+  res.render("users/index", {
+    matches: userMatches,
+    user: {
+      wins: userWins,
+      losses: userLosses,
+      username: username,
+    },
   });
 };
 usersController.create = (req, res, next) => {

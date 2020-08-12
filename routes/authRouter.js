@@ -18,7 +18,7 @@ authRouter.post(
 authRouter.get("/logout", (req, res) => {
   req.logout();
   req.flash("sucess", "sucessfully loggged you out!");
-  res.redirect("back");
+  res.redirect("/");
 });
 
 module.exports = authRouter;

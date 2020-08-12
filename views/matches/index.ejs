@@ -1,4 +1,30 @@
 
 <%- include('../partials/boilerplate.ejs')  %> 
-<h1>matches index</h1>
+<div class="row text-center matches-index">
+    <% for(let i = 0;  i < matches.length; i++) { %>
+        <div class="card col-md-3 col-sm-6" style="margin: 1%;" >
+            <img class="card-img-top" src=<%= matches[i].url %> alt="Card image cap">
+            <div class="card-body <% if (username == matches[i].winner) { %>
+              winner
+             <% } else { %>
+             loser
+             <% } %>
+             ">
+              <h5 class="card-title"> <%= matches[i].user1_char %>  </h5>
+              <p class="card-text">  <%= matches[i].date %> </p>
+              <div class="buttons">
+                <a href="/matches/<%= matches[i].id %>" class="btn btn-sm btn-primary">View</a>
+                <form action="/matches/<%= matches[i].id %>?_method=DELETE" method='POST' >
+                  <button class="btn btn-sm btn-danger">Delete</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        <% } %>
+      
+</div>
+<div class="toCenter">
+    <a href="/users"><button class="btn-lg btn-outline-primary">Go Back</button></a>
+</div>
+
 <%- include('../partials/end.ejs')  %>
