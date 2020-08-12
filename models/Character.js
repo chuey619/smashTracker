@@ -17,6 +17,9 @@ class Character {
       .oneOrNone(`SELECT * FROM characters WHERE name = $1`, name)
       .then((char) => {
         return new this(char);
+      })
+      .catch(() => {
+        return null;
       });
   }
   static getIdByName(name) {

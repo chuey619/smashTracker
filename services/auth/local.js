@@ -11,20 +11,16 @@ passport.use(
     console.log("local strategy");
     User.getByUsername(username)
       .then((user) => {
-        console.log(user);
         if (!user) {
           return done(null, false);
         }
         if (!authHelpers.comparePass(password, user.password_digest)) {
-          console.log("unsuccessful test");
           return done(null, false);
         } else {
-          console.log("successful check");
           return done(null, user);
         }
       })
       .catch((err) => {
-        console.log(err);
         return done(err);
       });
   })

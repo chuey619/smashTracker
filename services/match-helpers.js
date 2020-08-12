@@ -3,21 +3,27 @@ const Character = require("../models/Character");
 const User = require("../models/User");
 
 const matchHelpers = {};
-matchHelpers.decideWinner = (req, res, next) => {
+matchHelpers.decideWinner = async (req, res, next) => {
   if (req.body.result == "Me") {
     res.locals.winner = req.user.id;
-    User.getByUsername(req.body.opponent)
-      .then((user) => {
-        res.locals.loser = user.id || null;
-      })
-      .then(next);
+    let loser = await User.getByUsername(req.body.opponent);
+    console.log(loser);
+    if (loser != null) {
+      res.locals.loser = await loser.id;
+    } else {
+      res.locals.loser = null;
+    }
+    next();
   } else {
     res.locals.loser = req.user.id;
-    User.getByUsername(req.body.opponent)
-      .then((user) => {
-        res.locals.winner = user.id || null;
-      })
-      .then(next);
+    let winner = await User.getByUsername(req.body.opponent);
+    console.log(winner);
+    if (winner != null) {
+      res.locals.winner = await winner.id;
+    } else {
+      res.locals.winner = null;
+    }
+    next();
   }
 };
 
