@@ -6,7 +6,7 @@ class Match {
     this.user1_id = match.user1_id;
     this.user2_id = match.user2_id || null;
     this.date = match.date || null;
-    this.user1_char = match.user_char;
+    this.user1_char = match.user1_char;
     this.user2_char = match.user2_char || null;
     this.winner = match.winner;
     this.loser = match.loser;
@@ -40,13 +40,13 @@ class Match {
       .one(
         `
         INSERT INTO matches (user1_id, user2_id, date, winner, loser, user1_char, user2_char) 
-        VALUES ($/user1_id/, $/user2_id/, $/date/, $/winner/, $/loser/, $/user1_char/, $/user2_char/
+        VALUES ($/user1_id/, $/user2_id/, $/date/, $/winner/, $/loser/, $/user1_char/, $/user2_char/)
             RETURNING *
         `,
         this
       )
       .then((match) => {
-        return Object.assign(this, animal);
+        return Object.assign(this, match);
       });
   }
   update(changes) {

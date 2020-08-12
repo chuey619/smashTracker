@@ -8,7 +8,19 @@ class User {
       (this.password_digest = user.password_digest);
   }
   static getByUsername(username) {
-    return db.oneOrNone("SELECT * FROM users WHERE username = $1", username);
+    return db
+      .oneOrNone("SELECT * FROM users WHERE username = $1", username)
+      .then((user) => {
+        if (user) return new this(user);
+        else return null;
+      });
+  }
+  static getIdByName(name) {
+    return db
+      .oneOrNone("SELECT * FROM users WHERE username = $1", name)
+      .then((user) => {
+        return new this(user);
+      });
   }
   save() {
     return db

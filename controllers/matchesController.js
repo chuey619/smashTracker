@@ -2,7 +2,8 @@ const Match = require("../models/Match");
 const User = require("../models/User");
 const matchesController = {};
 const moment = require("moment");
-
+const Character = require("../models/Character");
+const matchHelpers = require("../services/match-helpers");
 matchesController.index = (req, res, next) => {
   console.log(req.user.id);
   Match.getAllForUser(1)
@@ -22,21 +23,32 @@ matchesController.show = (req, res, next) => {
     })
     .catch(next);
 };
-matchesController.create = (req, res, next) => {
-  new Match({
-    date: moment().startOf("day").fromNow(),
-    user1_id: res.locals.user.id,
-    user2_id: User.getIdByName(req.body.opponent) || null,
-    winner: req.body.winner,
-    loser: req.body.loser,
-    user1_char: req.body.user1_char,
-    user2_char: req.body.user1_char,
-  })
-    .save()
-    .then(() => {
-      res.redirect("/matches");
-    })
-    .catch(next);
+matchesController.create = async (req, res, next) => {
+  console.log(req.body);
+  let opponent = (await User.getByUsername(req.body.opponent)) || null;
+  opponentId = (await opponent.id) || null;
+  let user1_char = await Character.getByName(req.body.user1_char);
+  user1_charId = (await user1_char.id) || null;
+  let user2_char = await Character.getByName(req.body.user2_char);
+  user2_charId = (await user2_char.id) || null;
+  console.log({
+    user1_char,
+    user1_charId,
+    opponent,
+    opponentId,
+    user2_char,
+    user2_charId,
+  });
+  await new Match({
+    date: moment().format("L"),
+    user1_id: req.user.id,
+    user2_id: opponentId,
+    winner: res.locals.winner,
+    loser: res.locals.loser,
+    user1_char: user1_charId,
+    user2_char: user2_charId,
+  }).save();
+  await res.redirect("/users");
 };
 matchesController.update = (req, res) => {
   Match.getById(req.params.id)

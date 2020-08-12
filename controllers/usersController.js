@@ -20,7 +20,7 @@ usersController.create = (req, res, next) => {
     .then((user) => {
       req.login(user, (err) => {
         if (err) return next(err);
-        res.redirect(`/users/${user.id}`);
+        res.redirect(`/users`);
       });
     })
     .catch(next);

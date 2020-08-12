@@ -6,10 +6,28 @@ class Character {
     this.url = character.url;
   }
   static getById(id) {
-    return db.oneOrNone(`SELECT * FROM characters WHERE id = $1`, id);
+    return db
+      .oneOrNone(`SELECT * FROM characters WHERE id = $1`, id)
+      .then((char) => {
+        return new this(char);
+      });
   }
   static getByName(name) {
-    return db.oneOrNone(`SELECT * FROM characters WHERE name = $1`, name);
+    return db
+      .oneOrNone(`SELECT * FROM characters WHERE name = $1`, name)
+      .then((char) => {
+        return new this(char);
+      });
+  }
+  static getIdByName(name) {
+    return db
+      .oneOrNone(`SELECT * FROM characters WHERE name = $1`, name)
+      .then((char) => {
+        return new this(char);
+      })
+      .then((char) => {
+        return char.id;
+      });
   }
 }
 
