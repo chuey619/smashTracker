@@ -8,7 +8,7 @@ const getChars4 = async () => {
   let chars = await res.json();
   chars.forEach((char) => {
     charList.push(
-      new Character({ name: char.DisplayName, url: char.MainImageUrl })
+      new Character({ name: char.DisplayName, url: char.ThumbnailUrl })
     );
   });
 };
@@ -19,7 +19,7 @@ const getCharsUlt = async () => {
   let chars = await res.json();
   chars.forEach((char) => {
     charList.push(
-      new Character({ name: char.DisplayName, url: char.MainImageUrl })
+      new Character({ name: char.DisplayName, url: char.ThumbnailUrl })
     );
   });
 };
@@ -27,6 +27,7 @@ const getCharsUlt = async () => {
 const main = async () => {
   await getCharsUlt();
   await getChars4();
+
   await charList.map((char) => {
     return new Character(char);
   });

@@ -159,3 +159,9 @@ footer {
 #char-form {
     display: none;
 }
+
+
+.card-img-top {
+    max-height: 94px;
+    
+}
