@@ -10,14 +10,13 @@ authRouter.post(
   "/login",
   passport.authenticate("local", {
     successRedirect: `/users`,
-    failureRedirect: "/login",
+    failureRedirect: "/auth/login",
     failureFlash: true,
   })
 );
 
 authRouter.get("/logout", (req, res) => {
   req.logout();
-  req.flash("sucess", "sucessfully loggged you out!");
   res.redirect("/");
 });
 

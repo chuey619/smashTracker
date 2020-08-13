@@ -1,13 +1,3 @@
-const winsLosses = () => {
-  let winBar = document.querySelector(".wins-bar");
-  let winPercent = document.querySelector(".win-percent").innerText;
-  winBar.style.width = winPercent.substring(0, 3) + "%";
-
-  let lossesBar = document.querySelector(".losses-bar");
-  let lossPercent = document.querySelector(".loss-percent").innerText;
-  lossesBar.style.width = lossPercent.substring(0, 3) + "%";
-};
-
 const showForm = () => {
   const userForm = document.querySelector("#user-form");
   const charForm = document.querySelector("#char-form");
@@ -21,5 +11,4 @@ const showForm = () => {
   });
 };
 
-setTimeout(winsLosses(), 300);
 showForm();

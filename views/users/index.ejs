@@ -1,5 +1,9 @@
 
 <%- include('../partials/boilerplate.ejs')  %> 
+<% const winPercent = (user.wins / matches.length ) * 100 %> 
+<% const lossPercent = ( user.losses / matches.length ) * 100 %> 
+<p class="hidden win-percent"> <%= winPercent %>  </p>
+<p class="hidden loss-percent"> <%= lossPercent %>  </p>
 <section>
   <div class="jumbotron">
     <h1 class="display-4">Welcome, <%= user.username %> </h1>
@@ -8,25 +12,41 @@
   </div>
 </section>
 <section class="player-info">
-  <h4>total wins: <%= user.wins %> </h4>
-  <h4>total losses: <%= user.losses %> </h4>
-  <h4>Best fighter: </h4>
+  <h2 style="text-align: center;" > Record </br> (<%= user.wins %> - <%= user.losses %>)  </h2>
+  <div class="wins">
+    <h2>Wins</h2>
+    <div class="wins-bar" ></div>
+  </div>
+  <div class="losses">
+    <h2>Losses</h2>
+    <div class="losses-bar" ></div>
+  </div>
+  
 </section>
+<hr class="my-4">
 <section>
 <h5>Recent matches</h5>
-<div class="matches-container">
+<div  class="matches-container">
   
     <% for(let i = 0;  i < matches.length && i < 5; i++) { %>
         <div class="card" >
-            <img class="card-img-top" src=<%= matches[i].url %> alt="Card image cap">
+
+        <% if (user.username == matches[i].user1) { %>
+          <img class="card-img-top" src="<%= matches[i].url1 %>">
+        <% } else {%>
+              <img src=" <%= matches[i].url2 %>" class="card-img-top">
+        <% } %> 
             <div class="card-body <% if (user.username == matches[i].winner) { %>
               winner
              <% } else { %>
              loser
-            
              <% } %>
              ">
-              <h5 class="card-title"> <%= matches[i].user1_char %>  </h5>
+             <% if (user.username == matches[i].user1) { %>
+              <h5 class="card-title">   <%= matches[i].user1Char %> </h5>
+            <% } else {%>
+              <h5 class="card-title"> <%= matches[i].user2Char %> </h5>
+            <% } %> 
               <p class="card-text">  <%= matches[i].date %> </p>
               <div class="buttons">
                 <a href="/matches/<%= matches[i].id %>" class="btn btn-sm btn-primary">View</a>
@@ -39,8 +59,14 @@
         <% } %>
 </div>
 </section>
-<a href="/matches"><button class="btn btn-lg btn-outline-primary">View all matches</button></a>
-<a href="/matches/new"> <button class="btn btn-lg btn-outline-primary"> record a new match </button> </a>
+<section class="bottom-buttons">
+  <a href="/matches"><button class="btn btn-lg btn-outline-primary">View all matches</button></a>
+  <a href="/matches/new"> <button class="btn btn-lg btn-outline-primary"> Record a new match </button> </a>
+</section>
+<script src="/main/getWins.js">
+  
+</script>
+
 
 <%- include('../partials/end.ejs')  %> 
 

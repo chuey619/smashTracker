@@ -8,7 +8,6 @@ const options = {};
 
 passport.use(
   new LocalStrategy(options, (username, password, done) => {
-    console.log("local strategy");
     User.getByUsername(username)
       .then((user) => {
         if (!user) {

@@ -1,4 +1,5 @@
 body {
+    /* gradient from coolors */
 background: hsla(221, 45%, 73%, 1);
 
 background: linear-gradient(90deg, hsla(221, 45%, 73%, 1) 0%, hsla(220, 78%, 29%, 1) 100%);
@@ -52,6 +53,7 @@ footer {
     display: flex;
     width: 100%;
     justify-content: flex-end;
+
     
 }
 
@@ -65,8 +67,9 @@ footer {
 }
 
 .jumbotron {
-    padding: 5%;
+    padding: 3%;
     background-color: white;
+    margin-bottom: 0;
 }
 
 .winner {
@@ -90,4 +93,69 @@ footer {
 }
 .toCenter a {
     margin: 0 auto;
+}
+
+.match {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid lightgray;
+    box-shadow: lightgray;
+    width: 60%;
+    margin: 0 auto;
+    justify-self: center;
+    margin-top: 20%;
+    border-radius: 10px;
+    padding: 1px;
+}
+
+.show-img {
+    border-radius: 10px;
+}
+
+.bottom-buttons {
+    margin-top: 2%;
+}
+
+.player-info {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5%;
+}
+.wins {
+    display: flex;
+    height: 5%;
+    position: relative;
+    flex-direction: column;
+}
+.losses {
+    display: flex;
+    height: 5%;
+    position: relative;
+    flex-direction: column;
+}
+.wins-bar {
+    width: 0%;
+    background-color: green;
+    height: 20px;
+    transition: width 1s;
+  
+}
+.losses-bar {
+    width: 0%;
+    background-color: red;
+    height: 20px;
+    transition: width 1s;
+   
+}
+
+.hidden {
+    display: none;
+}
+
+#user-form {
+    display: none;
+}
+
+#char-form {
+    display: none;
 }

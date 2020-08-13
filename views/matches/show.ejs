@@ -1,4 +1,20 @@
 
 <%- include('../partials/boilerplate.ejs')  %> 
-<h1>matches show</h1>
+<div class="match">
+    <div class="user1">
+        <img class="show-img" src=" <%= match.url1 %> " alt="">
+        <h4> <%= match.user1Char %>  </h4>
+        <p> <%= match.user1 %> </p>
+    </div>
+    
+    <div class="border">
+      
+    </div>
+    
+    <div class="user2">
+        <img class="show-img" src=" <%= match.url2 %>" alt="">
+        <h4> <%= match.user2Char %>  </h4>
+        <p> <%= match.user2 %> </p>
+    </div>
+</div>
 <%- include('../partials/end.ejs')  %>

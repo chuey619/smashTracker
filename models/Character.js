@@ -32,6 +32,20 @@ class Character {
         return char.id;
       });
   }
+  save() {
+    return db
+      .one(
+        `
+      INSERT INTO characters (name, url) 
+      VALUES ($/name/, $/url/)
+          RETURNING *
+      `,
+        this
+      )
+      .then((char) => {
+        return Object.assign(this, char);
+      });
+  }
 }
 
 module.exports = Character;

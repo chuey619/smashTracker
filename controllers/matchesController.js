@@ -4,17 +4,19 @@ const matchesController = {};
 const moment = require("moment");
 const Character = require("../models/Character");
 const matchHelpers = require("../services/match-helpers");
-matchesController.index = (req, res, next) => {
+matchesController.index = async (req, res, next) => {
   const username = req.user.username;
-  Match.getAllForUser(username)
-    .then((matches) => {
-      res.render("matches/index", {
-        matches,
-        username,
-      });
-    })
-    .catch(next);
+  let matches = await Match.getAllForUser(username);
+  let userMatches = await matches;
+
+  res.render("matches", {
+    matches: userMatches,
+    user: {
+      username: username,
+    },
+  });
 };
+
 matchesController.show = (req, res, next) => {
   Match.getById(req.params.id)
     .then((match) => {
@@ -24,28 +26,30 @@ matchesController.show = (req, res, next) => {
     .catch(next);
 };
 matchesController.create = async (req, res, next) => {
-  console.log(req.body);
   let opponent = (await User.getByUsername(req.body.opponent)) || null;
-  console.log(`opponent: ${await opponent}`);
   let opponentName;
+  let user1CharName;
+  let user1CharUrl;
+  let user2CharName;
+  let user2CharUrl;
   if (opponent) {
     opponentName = await opponent.username;
   } else {
     opponentName = null;
   }
-  let user1_char = await Character.getByName(req.body.user1_char);
-  if (user1_char) {
-    user1_charName = await user1_char.name;
-    userUrl = await user1_char.url;
+  let user1Char = await Character.getByName(req.body.user1_char);
+  if (user1Char) {
+    user1CharName = await user1Char.name;
+    user1CharUrl = await user1Char.url;
   } else {
-    user1_char = null;
+    user1CharName = null;
   }
-  let user2_char = await Character.getByName(req.body.user2_char);
-  if (user2_char) {
-    user2_char = await user2_char.name;
-    user2Url = await user2_char.url;
+  let user2Char = await Character.getByName(req.body.user2_char);
+  if (user2Char) {
+    user2CharName = await user2Char.name;
+    user2CharUrl = await user2Char.url;
   } else {
-    user2_char = null;
+    user2CharName = null;
   }
   await new Match({
     date: moment().format("L"),
@@ -53,10 +57,10 @@ matchesController.create = async (req, res, next) => {
     user2: opponentName,
     winner: res.locals.winner,
     loser: res.locals.loser,
-    user1_char: user1_charName,
-    user2_char: user2_char,
-    url1: userUrl,
-    url2: user2Url,
+    user1Char: user1CharName,
+    user2Char: user2CharName,
+    url1: user1CharUrl,
+    url2: user2CharUrl,
   }).save();
   await res.redirect("/users");
 };
@@ -84,4 +88,54 @@ matchesController.delete = (req, res, next) => {
     })
     .catch(next);
 };
+
+matchesController.userIndex = async (req, res, next) => {
+  const username = req.user.username;
+  let matches = await Match.getAllForUserAgainstUser(
+    username,
+    req.query.username
+  );
+  let userMatches = await matches;
+  res.render("matches", {
+    matches: userMatches,
+    user: {
+      username: username,
+    },
+  });
+};
+matchesController.charIndex = async (req, res, next) => {
+  const username = req.user.username;
+  const char = req.query.char;
+  let matches = await Match.getAllForUserByChar(username, char);
+  let userMatches = await matches;
+  res.render("matches", {
+    matches: userMatches,
+    user: {
+      username: username,
+    },
+  });
+};
+matchesController.lossesIndex = async (req, res, next) => {
+  const username = req.user.username;
+  let matches = await Match.getAllLosses(username);
+  let userMatches = await matches;
+  res.render("matches", {
+    matches: userMatches,
+    user: {
+      username: username,
+    },
+  });
+};
+matchesController.winsIndex = async (req, res, next) => {
+  const username = req.user.username;
+  let matches = await Match.getAllWins(username);
+  let userMatches = await matches;
+  res.render("matches", {
+    matches: userMatches,
+    user: {
+      username: username,
+    },
+  });
+};
+
 module.exports = matchesController;
