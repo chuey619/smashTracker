@@ -1,4 +1,4 @@
-const Match = require("../models/Match");
+const Match = require("../models/match");
 const User = require("../models/User");
 const matchesController = {};
 const moment = require("moment");
@@ -16,7 +16,6 @@ matchesController.index = async (req, res, next) => {
     },
   });
 };
-
 matchesController.show = (req, res, next) => {
   Match.getById(req.params.id)
     .then((match) => {
@@ -87,55 +86,6 @@ matchesController.delete = (req, res, next) => {
       res.redirect("/users");
     })
     .catch(next);
-};
-
-matchesController.userIndex = async (req, res, next) => {
-  const username = req.user.username;
-  let matches = await Match.getAllForUserAgainstUser(
-    username,
-    req.query.username
-  );
-  let userMatches = await matches;
-  res.render("matches", {
-    matches: userMatches,
-    user: {
-      username: username,
-    },
-  });
-};
-matchesController.charIndex = async (req, res, next) => {
-  const username = req.user.username;
-  const char = req.query.char;
-  let matches = await Match.getAllForUserByChar(username, char);
-  let userMatches = await matches;
-  res.render("matches", {
-    matches: userMatches,
-    user: {
-      username: username,
-    },
-  });
-};
-matchesController.lossesIndex = async (req, res, next) => {
-  const username = req.user.username;
-  let matches = await Match.getAllLosses(username);
-  let userMatches = await matches;
-  res.render("matches", {
-    matches: userMatches,
-    user: {
-      username: username,
-    },
-  });
-};
-matchesController.winsIndex = async (req, res, next) => {
-  const username = req.user.username;
-  let matches = await Match.getAllWins(username);
-  let userMatches = await matches;
-  res.render("matches", {
-    matches: userMatches,
-    user: {
-      username: username,
-    },
-  });
 };
 
 module.exports = matchesController;

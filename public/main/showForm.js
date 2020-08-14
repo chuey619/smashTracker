@@ -1,6 +1,6 @@
 const showForm = () => {
   const userForm = document.querySelector("#user-form");
-  const charForm = document.querySelector("#char-form");
+
   const userButton = document.querySelector("#user-search");
   const charButton = document.querySelector("#char-search");
   charButton.addEventListener("click", () => {

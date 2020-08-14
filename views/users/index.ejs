@@ -2,8 +2,7 @@
 <%- include('../partials/boilerplate.ejs')  %> 
 <% const winPercent = (user.wins / matches.length ) * 100 %> 
 <% const lossPercent = ( user.losses / matches.length ) * 100 %> 
-<p class="hidden win-percent"> <%= winPercent %>  </p>
-<p class="hidden loss-percent"> <%= lossPercent %>  </p>
+
 <section>
   <div class="jumbotron">
     <h1 class="display-4">Welcome, <%= user.username %> </h1>
@@ -15,11 +14,11 @@
   <h2 style="text-align: center;" > Record </br> (<%= user.wins %> - <%= user.losses %>)  </h2>
   <div class="wins">
     <h2>Wins</h2>
-    <div class="wins-bar" ></div>
+    <div style="width: 0;" data-percent='<%= winPercent %>' class="wins-bar" ></div>
   </div>
   <div class="losses">
     <h2>Losses</h2>
-    <div class="losses-bar" ></div>
+    <div style="width: 0;" data-percent="<%= lossPercent %>" class="losses-bar" ></div>
   </div>
   
 </section>
@@ -29,14 +28,13 @@
 <div  class="matches-container">
   
     <% for(let i = 0;  i < matches.length && i < 5; i++) { %>
+      <% console.log(matches[i].id) %> 
         <div class="card" >
             <% if (user.username == matches[i].user1) { %>
               <img class="card-img-top" src="<%= matches[i].url1 %>">
             <% } else {%>
                   <img src=" <%= matches[i].url2 %>" class="card-img-top">
             <% } %> 
-          
-       
             <div class="card-body <% if (user.username == matches[i].winner) { %>
               winner
              <% } else { %>

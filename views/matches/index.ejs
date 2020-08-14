@@ -1,46 +1,51 @@
 
 <%- include('../partials/boilerplate.ejs')  %> 
+
 <div class="input-group mb-3">
   <div class="input-group-prepend">
     <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Search By</button>
     <div class="dropdown-menu">
-      <a class="dropdown-item" href="/matches">All</a>
-      <a class="dropdown-item" href="/matches/wins">Wins</a>
-      <a class="dropdown-item" href="/matches/losses">Losses</a>
+      <a id="all" class="dropdown-item" >All</a>
+      <a id="wins" class="dropdown-item">Wins</a>
+      <a id="losses" class="dropdown-item" >Losses</a>
       <a id="user-search" class="dropdown-item" href="#">User</a>
       <a id="char-search" class="dropdown-item" href="#">Character</a>
     </div>
   </div>
-  <form class="form-inline" id="user-form" action="/matches/user" style="width: 50%;">
-    <input name="username" type="text" class="form-control">
-    <input type="submit" class="btn btn-outline-primary">
-  </form>
-  <form class="form-inline" id="char-form" action="/matches/char" style="width: 50%;">
-    <input style="width: 70%;" name="char" type="text" class="form-control">
-    <input type="submit" class="btn btn-outline-primary">
-  </form>
+  <div class="form-inline" id="user-form"  style="width: 50%; display: none;">
+    <input id="user-value"  type="text" class="form-control">
+    <button id="user-input" class="btn btn-outline-primary">Search!</button>
+  </div>
+  <div class="form-inline" id="char-form"  style="width: 50%; display: none;">
+    <input id="char-value"  type="text" class="form-control">
+    <button id="char-input" class="btn btn-outline-primary">Search!</button>
+  </div>
+  
 </div>
 <div class="row text-center matches-index">
+  <% let cardChar %> 
+  <% let cardUrl %> 
+  <% let cardOpponent %> 
     <% for(let i = 0;  i < matches.length; i++) { %>
-        <div class="card col-md-3 col-sm-6 col-xs-4" style="max-width: 273px; margin: 1%; padding: 0;" >
-          <% if (user.username == matches[i].user1) { %>
-            <img class="card-img-top" src="<%= matches[i].url1 %>">
-          <% } else {%>
-                <img src=" <%= matches[i].url2 %>" class="card-img-top">
-          <% } %> 
+      <% if (user.username == matches[i].user1) { %>
+        <% cardChar = matches[i].user1Char %> 
+        <% cardUrl = matches[i].url1 %> 
+        <% cardOpponent = matches[i].user2 %> 
+       
+<% } else {%>
+     <% cardChar = matches[i].user2Char %> 
+     <% cardUrl = matches[i].url2 %> 
+     <% cardOpponent = matches[i].user1 %>
+<% } %> 
+        <div data-opponent="<%= cardOpponent %>" data-character="<%= cardChar %>" data-user="<%= user.username %>" data-loser="<%= matches[i].loser %>" data-winner="<%= matches[i].winner %>" class="card col-md-3 col-sm-6 col-xs-4" style="max-width: 273px; margin: 1%; padding: 0;" >
+            <img class="card-img-top" src="<%= cardUrl %>">
             <div class="card-body <% if (user.username == matches[i].winner) { %>
               winner
              <% } else { %>
              loser
              <% } %>
              ">
-             <% if (user.username == matches[i].user1) { %>
-         
-              <h5 class="card-title">   <%= matches[i].user1Char %> </h5>
-            <% } else {%>
-             
-              <h5 class="card-title"> <%= matches[i].user2Char %> </h5>
-            <% } %> 
+             <h5 class="card-title"> <%= cardChar %>  </h5>
               <p class="card-text">  <%= matches[i].date %> </p>
               <div class="buttons">
                 <a href="/matches/<%= matches[i].id %>" class="btn btn-sm btn-primary">View</a>
@@ -56,7 +61,7 @@
 <div class="toCenter">
     <a style="background-color: white;" href="/users"><button class="btn-lg btn-outline-primary">Go Back</button></a>
 </div>
-<script src="/main/showForm.js">
+<script src="/main/search.js">
 
 </script>
 <%- include('../partials/end.ejs')  %>

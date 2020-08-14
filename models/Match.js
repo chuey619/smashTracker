@@ -17,10 +17,12 @@ class Match {
     return db
       .manyOrNone(
         `
-      SELECT * FROM matches 
+      SELECT matches.* FROM matches 
+      JOIN users
+      ON users.username = matches.user1
       WHERE user1 = $1
       OR user2 = $1
-      ORDER BY id DESC
+      ORDER BY matches.id DESC
       `,
         username
       )
@@ -40,14 +42,26 @@ class Match {
   }
   static getTotalWinsForUser(name) {
     return db
-      .manyOrNone(`SELECT COUNT(*) FROM matches WHERE winner = $1`, name)
+      .manyOrNone(
+        `SELECT COUNT(*) FROM matches 
+      JOIN users 
+      ON users.username = matches.winner
+      WHERE users.username = $1`,
+        name
+      )
       .then((count) => {
         return count;
       });
   }
   static getTotalLossesForUser(name) {
     return db
-      .manyOrNone(`SELECT COUNT(*) FROM matches WHERE loser = $1`, name)
+      .manyOrNone(
+        `SELECT COUNT(*) FROM matches
+      JOIN users
+      ON users.username = matches.loser
+      WHERE users.username = $1`,
+        name
+      )
       .then((count) => {
         return count;
       });
@@ -56,7 +70,9 @@ class Match {
     return db
       .manyOrNone(
         `
-    SELECT * FROM matches
+    SELECT matches.* FROM matches
+    JOIN users
+    ON users.username = matches.user1
     WHERE user1 = $1 OR user1 = $2
     AND user2 = $1 OR user2 = $2 
     `,
@@ -72,7 +88,9 @@ class Match {
     return db
       .manyOrNone(
         `
-    SELECT * FROM matches
+    SELECT matches.* FROM matches
+    JOIN users
+    ON users.username = matches.user1
     WHERE user1 = $1 AND user1Char = $2 
     OR user2 = $1 AND user2Char = $2
     `,
@@ -88,8 +106,10 @@ class Match {
     return db
       .manyOrNone(
         `
-    SELECT * FROM matches 
-    WHERE winner = $1
+    SELECT matches.* FROM matches 
+    JOIN users
+    ON users.username = matches.winner
+    WHERE users.username = $1
     `,
         user
       )
@@ -103,8 +123,10 @@ class Match {
     return db
       .manyOrNone(
         `
-  SELECT * FROM matches 
-  WHERE loser = $1
+  SELECT matches.* FROM matches 
+  JOIN users
+  ON users.username = matches.loser
+  WHERE users.username = $1
   `,
         user
       )
@@ -114,7 +136,6 @@ class Match {
         });
       });
   }
-
   save() {
     return db
       .one(
@@ -129,6 +150,7 @@ class Match {
         return Object.assign(this, match);
       });
   }
+
   update(changes) {
     Object.assign(this, changes);
     return db

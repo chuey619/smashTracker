@@ -1,167 +1,90 @@
 body {
-    /* gradient from coolors */
-background: hsla(221, 45%, 73%, 1);
-
-background: linear-gradient(90deg, hsla(221, 45%, 73%, 1) 0%, hsla(220, 78%, 29%, 1) 100%);
-
-background: -moz-linear-gradient(90deg, hsla(221, 45%, 73%, 1) 0%, hsla(220, 78%, 29%, 1) 100%);
-
-background: -webkit-linear-gradient(90deg, hsla(221, 45%, 73%, 1) 0%, hsla(220, 78%, 29%, 1) 100%);
-
-filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#9BAFD9", endColorstr="#103783", GradientType=1 );
-width: 100vw;
-height: 100vh;
+    background: #C33764;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #1D2671, #C33764);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #1D2671, #C33764); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
 }
-h3 {
-    margin: 0 auto;
-    width: 10%;
-    margin-bottom: 3%;
-}
+    
 
 .container {
-    background-color:white;
-    padding: 10px;
-    border-radius: 10px;
-    height: 90%;
+    background-color: white;
 }
-.form {
-    width: 50%;
-    border-radius: 10px;
-    border: 1px solid lightgrey;
-    margin: 0 auto;
-    padding: 10px;
+
+.nav {
+    background-color: white;
+    justify-content: space-between;
 }
-ul {
-    background-color: white ;
-}
-footer {
-    margin: 0 auto;
-    text-align: center;
-}
-.matches-container {
-    height: 30%;
+.nav-div {
     display: flex;
-    justify-content: space-evenly;
-    
 }
-
-.card {
-    max-height: 190px;
-    margin-right: 5px;
-}
-.buttons {
-    display: flex;
-    width: 100%;
-    justify-content: flex-end;
-
-    
-}
-
-.card-body {
-   
-    padding: 0;
-}
-
-.card-text {
-    margin-bottom: 0;
+.navbar-brand {
+    margin-left: 1%;
 }
 
 .jumbotron {
-    padding: 3%;
     background-color: white;
+    margin-bottom: 0;
+    padding: 2rem 3rem;
+    padding-top: 4rem;
+}
+
+.card {
+    padding: 0;
+    margin: 1rem;
+    ;
+}
+
+.card-img-top {
+    max-height: 74px;
+}
+
+#matches-container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    flex-grow: 1;
+    
+}
+
+footer {
+    
+    bottom: 0;
+    background-color: white;
+    width: 100%;
+    text-align: center;
     margin-bottom: 0;
 }
 
-.winner {
-    background-color:rgba(63, 191, 127, 0.6) ;
+footer p {
+    margin-bottom: 0;
 }
 
 .loser {
-    background-color: rgba(198, 16, 16, 0.62);
+    box-shadow: 5px 3px 3px red;
 }
 
-.matches-index {
-    display: flex;
-    flex-wrap: wrap;
-   justify-content: space-evenly;
-}
-.toCenter {
-    width: 100%;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-}
-.toCenter a {
-    margin: 0 auto;
+.winner {
+    box-shadow: 5px 3px 3px rgba(18, 178, 10, 0.6)
 }
 
-.match {
-    display: flex;
-    justify-content: space-between;
-    border: 1px solid lightgray;
-    box-shadow: lightgray;
-    width: 60%;
-    margin: 0 auto;
-    justify-self: center;
-    margin-top: 20%;
-    border-radius: 10px;
-    padding: 1px;
-}
-
-.show-img {
-    border-radius: 10px;
-}
-
-.bottom-buttons {
-    margin-top: 2%;
-}
-
-.player-info {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 5%;
-}
-.wins {
-    display: flex;
-    height: 5%;
-    position: relative;
-    flex-direction: column;
-}
-.losses {
-    display: flex;
-    height: 5%;
-    position: relative;
-    flex-direction: column;
-}
 .wins-bar {
-    width: 0%;
-    background-color: green;
-    height: 20px;
-    transition: width 1s;
-  
+    height: 10%;
+    width: 0;
+    background-color: black;
+    height: 10px;
+    transition: width .3;
 }
 .losses-bar {
-    width: 0%;
-    background-color: red;
-    height: 20px;
-    transition: width 1s;
-   
+    height: 10%;
+    width: 0;
+    background-color: black;
+    height: 10px;
+    transition: width .3;
 }
 
-.hidden {
-    display: none;
-}
-
-#user-form {
-    display: none;
-}
-
-#char-form {
-    display: none;
-}
-
-
-.card-img-top {
-    max-height: 94px;
-    
+.form {
+    border: 1px solid lightgray;
+    border-radius: 25px;
+    padding: 10%;
+    margin-top: 30px;
 }

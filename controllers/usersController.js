@@ -11,7 +11,7 @@ usersController.index = async (req, res, next) => {
   let userLosses = await losses[0].count;
   let wins = await Match.getTotalWinsForUser(username);
   let userWins = await wins[0].count;
-  res.render("users/index", {
+  res.render("users/index2", {
     matches: userMatches,
     user: {
       wins: userWins,

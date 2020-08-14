@@ -25,28 +25,4 @@ matchesRouter.delete(
   matchesController.delete
 );
 
-matchesRouter.get(
-  "/user",
-  authHelpers.loginRequired,
-  matchesController.userIndex
-);
-
-matchesRouter.get(
-  "/char",
-  authHelpers.loginRequired,
-  matchesController.charIndex
-);
-
-matchesRouter.get(
-  "/wins",
-  authHelpers.loginRequired,
-  matchesController.winsIndex
-);
-
-matchesRouter.get(
-  "/losses",
-  authHelpers.loginRequired,
-  matchesController.lossesIndex
-);
-
 module.exports = matchesRouter;

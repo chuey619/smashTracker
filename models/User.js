@@ -34,20 +34,6 @@ class User {
       )
       .then((savedUser) => Object.assign(this, savedUser));
   }
-  // getAllMatches() {
-  //   return db
-  //     .manyOrNone(
-  //       `
-  //   SELECT * FROM matches
-  //   WHERE user1_id = $1
-  //   or user2_id = $1
-  //   `,
-  //       this.id
-  //     )
-  //     .then((matches) => {
-  //       matches.map((match) => {});
-  //     });
-  // }
 }
 
 module.exports = User;
