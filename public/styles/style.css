@@ -2,7 +2,7 @@ body {
     background: #C33764;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #1D2671, #C33764);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #1D2671, #C33764); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    
+    font-family: Alata, sans-serif;
 }
     
 
@@ -38,7 +38,7 @@ body {
     max-height: 74px;
 }
 
-#matches-container {
+.matches-container {
     display: flex;
     flex-wrap: wrap;
     padding: 0;
@@ -86,5 +86,34 @@ footer p {
     border: 1px solid lightgray;
     border-radius: 25px;
     padding: 10%;
-    margin-top: 30px;
+    
+}
+
+.auth-form {
+    border: 1px solid lightgray;
+    padding: 10px;
+    border-radius: 25px;
+}
+
+.toCenter {
+    display: flex;
+    justify-content: center;
+}
+
+.cover {
+    height: 100%;
+    background-color: white;
+}
+
+
+
+.show-card {
+    height: 30%;
+}
+
+#show-container {
+    display: flex;
+    justify-content: space-around;
+    margin: 0 auto;
+    padding-top: 10%;
 }

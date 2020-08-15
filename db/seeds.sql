@@ -28,3 +28,8 @@ JOIN chars
 ON matches.winner_char_id = chars.id
 OR matches.loser_char_id = chars.id
 WHERE matches.winner_id = 1 AND chars.name = 'wolf';
+
+INSERT INTO users
+(username, email, password_digest)
+VALUES
+('Uknown', 'test@test.com', 'abcdef');

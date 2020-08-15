@@ -158,12 +158,13 @@ class Match {
         `
         UPDATE matches
         SET
-        user1_id = $/user1_id,
-        user2_id = $/user2_id/,
-        user1_char, $/user1_char/,
-        user2_char, $/user2_char/,
-        date = $/date/
-        `
+        user1 = $/user1/,
+        user2 = $/user2/,
+        user1_char, $/user1Char/,
+        user2_char, $/user2Char/
+        WHERE id = $1
+        `,
+        this.id
       )
       .then((match) => {
         return Object.assign(this, match);

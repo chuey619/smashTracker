@@ -8,19 +8,28 @@ matchesController.index = async (req, res, next) => {
   const username = req.user.username;
   let matches = await Match.getAllForUser(username);
   let userMatches = await matches;
-
+  let chars = await Character.getAll();
+  let charNames = chars.map((char) => {
+    return char.name;
+  });
+  let users = await User.getAll();
+  let usernames = users.map((user) => {
+    return user.username;
+  });
   res.render("matches", {
     matches: userMatches,
     user: {
       username: username,
     },
+    chars: charNames,
+    opponents: usernames,
   });
 };
 matchesController.show = (req, res, next) => {
+  let username = req.username;
   Match.getById(req.params.id)
     .then((match) => {
-      res.render("matches/show", { match: match });
-      next();
+      res.render("matches/show", { match: match, user: username });
     })
     .catch(next);
 };
@@ -69,7 +78,6 @@ matchesController.update = (req, res) => {
       return match.update(req.body);
     })
     .then((updatedMatch) => {
-      req.flash("success", "Successfully updated the match");
       res.redirect(`/matches/${updatedMatch.id}`);
     })
     .catch(() => {
@@ -82,7 +90,6 @@ matchesController.delete = (req, res, next) => {
       return match.delete();
     })
     .then(() => {
-      req.flash("success", "Successfully deleted the match");
       res.redirect("/users");
     })
     .catch(next);

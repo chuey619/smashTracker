@@ -1,0 +1,9 @@
+<%- include('../partials/boilerplate.ejs')  %> 
+<div style="height: 100vh;" class="container">
+  <div class="form">
+    <form method="POST" action='/matches/<%= match.id %>?_method=PUT'>
+  <%- include ('../partials/form.ejs') %> 
+</div>
+  
+
+  <%- include('../partials/end.ejs')  %> 

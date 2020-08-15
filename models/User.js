@@ -22,6 +22,15 @@ class User {
         return new this(user);
       });
   }
+  static getAll() {
+    return db
+      .manyOrNone("SELECT * FROM users ORDER BY username DESC")
+      .then((users) => {
+        return users.map((user) => {
+          return new this(user);
+        });
+      });
+  }
   save() {
     return db
       .one(

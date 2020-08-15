@@ -1,20 +1,39 @@
 
 <%- include('../partials/boilerplate.ejs')  %> 
-<div class="match">
-    <div class="user1">
-        <img class="show-img" src=" <%= match.url1 %> " alt="">
-        <h4> <%= match.user1Char %>  </h4>
-        <p> <%= match.user1 %> </p>
+<section style="height: 100%;" class="container">
+    <% if (user == match.winner) { %>
+        <h1 style="text-align: center;" >Victory!</h1>
+    <% } else { %>
+        <h1 style="text-align: center;" >Defeat!</h1>
+   <% } %>
+   <p style="text-align: center;" class="text-muted"> <%= match.date %>  </p>
+    <div id="show-container"   class="container">
+        <div class="show-one">
+            <div class="card" style="width: 18rem;">
+                <img src=" <%= match.url1 %> " class="card-img-top" >
+                <div style="padding: .9rem;" class="card-body">
+                  <h5 class="card-title"> <%= match.user1Char %>  </h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><%= match.user1 %></li>
+                </ul>
+              </div>
+        </div>
+        <h1>VS</h1>
+        <div class="show-two">
+            <div class="card" style="width: 18rem;">
+                <img src=" <%= match.url2 %> " class="card-img-top show-card" >
+                <div style="padding: .9rem;" class="card-body">
+                  <h5 class="card-title"> <%= match.user2Char %>  </h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><%= match.user2 %></li>
+                </ul>
+              </div>
+        </div>
     </div>
-    
-    <div class="border">
-      
+    <div>
+        <a href="/matches/<%=match.id%>/edit"><button class="btn btn-outline-primary">Edit</button></a>
     </div>
-    
-    <div class="user2">
-        <img class="show-img" src=" <%= match.url2 %>" alt="">
-        <h4> <%= match.user2Char %>  </h4>
-        <p> <%= match.user2 %> </p>
-    </div>
-</div>
+</section>
 <%- include('../partials/end.ejs')  %>

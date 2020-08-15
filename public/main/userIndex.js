@@ -16,14 +16,8 @@ const setColors = () => {
   });
 };
 
-const showForm = () => {
-  const showButton = document.querySelector("#new-form-button");
-  const newForm = document.querySelector(".form");
-  showButton.addEventListener("click", () => {
-    newForm.style.display = "flex";
-  });
+const indexMain = () => {
+  setColors();
+  setTimeout(winsLosses(), 2000);
 };
-
-showForm();
-setColors();
-setTimeout(winsLosses(), 2000);
+indexMain();

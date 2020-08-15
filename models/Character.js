@@ -12,6 +12,15 @@ class Character {
         return new this(char);
       });
   }
+  static getAll() {
+    return db
+      .manyOrNone(`SELECT * FROM characters ORDER BY name DESC`)
+      .then((chars) => {
+        return chars.map((char) => {
+          return new this(char);
+        });
+      });
+  }
   static getByName(name) {
     return db
       .oneOrNone(`SELECT * FROM characters WHERE name = $1`, name)

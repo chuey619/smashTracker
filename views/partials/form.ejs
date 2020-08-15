@@ -1,0 +1,29 @@
+
+
+      <div class="form-group">
+        <label for="opponent">Oppenent</label>
+        <select data-user="<%=user.username%>" data-opponents="<%=opponents%>" class="form-control" id='opponent' name="opponent">
+          <option value="Uknown">Uknown</option>
+          </select>
+      </div>
+      <div class="form-group">
+        <label  for="character">Your Fighter</label>
+        <select data-chars="<%= chars %>" class="charSelect form-control" required name="user1_char" id="character">
+      </select>
+      </div>
+      <div class="form-group">
+        <label for="opp_character">Opponents Fighter</label>
+        <select class="charSelect form-control" required name="user2_char"  id="opp_character">
+      </select>
+      </div>
+      <div class="form-group">
+        <label for="result">Who won?</label>
+        <select required name="result" class="form-control" id="result">
+          <option>Me</option>
+          <option>Opponent</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+<script src="/main/form.js"></script>

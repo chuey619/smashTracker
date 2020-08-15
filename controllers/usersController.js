@@ -2,9 +2,18 @@ const User = require("../models/User"),
   bcrypt = require("bcryptjs");
 
 const Match = require("../models/Match");
+const Character = require("../models/Character");
 const usersController = {};
 usersController.index = async (req, res, next) => {
   const username = req.user.username;
+  let chars = await Character.getAll();
+  let charNames = chars.map((char) => {
+    return char.name;
+  });
+  let users = await User.getAll();
+  let usernames = users.map((user) => {
+    return user.username;
+  });
   let matches = await Match.getAllForUser(username);
   let userMatches = await matches;
   let losses = await Match.getTotalLossesForUser(username);
@@ -18,6 +27,8 @@ usersController.index = async (req, res, next) => {
       losses: userLosses,
       username: username,
     },
+    chars: charNames,
+    opponents: usernames,
   });
 };
 usersController.create = (req, res, next) => {

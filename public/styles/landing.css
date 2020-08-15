@@ -4,6 +4,7 @@ colt steele web dev bootcamp on udemy
 
 body {
     background-color: #000;
+    font-family: Alata, sans-serif;
   }
   #landing-header {
     z-index: 1;

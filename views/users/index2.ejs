@@ -14,7 +14,7 @@
 <section class="row">
     <div style="  margin-left: 5%; margin-bottom: 1%;" class="col-6">
         <p class="text-muted">Recent matches</p>
-        <div id="matches-container" class="container-fluid">
+        <div  class="container-fluid matches-container">
             <% for (let i = 0; i < 6 && i < matches.length; i++)  { %>
                 <% if (user.username == matches[i].user1) { %>
                     <% cardChar = matches[i].user1Char %> 
@@ -26,7 +26,7 @@
                  <% cardUrl = matches[i].url2 %> 
                  <% cardOpponent = matches[i].user1 %>
               <% } %> 
-                <div data-winner="<%= matches[i].winner %>" data-user="<%= user.username %>" class="card col-5">
+                <div data-winner="<%= matches[i].winner %>" data-user="<%= user.username %>" class="card col-xs-1 col-5">
                     <img class="card-img-top" src="<%= cardUrl %>">
                     <div  class="card-body">
                         <h5 class="card-title"> <a href="/matches/<%=matches[i].id %>">vs <%= cardOpponent %></a></h5>
@@ -35,7 +35,6 @@
                 </div>
                 <% } %> 
         </div>
-        <button id="new-form-button" style="margin-left: 1rem;" class="btn btn-outline-primary">Add a new match</button>
         <a href="/matches"><button class="btn btn-outline-primary">View all matches</button></a>
     </div>
     <div style="margin-left: 15%; border-left: 1px solid lightgray;" class="col-3">
@@ -47,29 +46,10 @@
             <h4>Total</h4>
             <h4> (<%= user.wins %> - <%= user.losses %>)  </h4>
         </div>
-        <div style="display: none;" class="form">
+        <div style="margin-top: 30%;" class="form">
+          <h4>Add a match!</h4>
             <form method="POST" action='/matches'>
-              <div class="form-group">
-                <label for="opponent">Oppenent (If a random player leave blank)</label>
-                <input type="text" class="form-control" name="opponent" id="opponent">
-              </div>
-              <div class="form-group">
-                <label for="character">Your character (Title Case Please)</label>
-                <input required name="user1_char" type="text" class="form-control" id="character">
-              </div>
-              <div class="form-group">
-                <label for="opp_character">Opponent character (Title Case Please)</label>
-                <input required name="user2_char" type="text" class="form-control" id="opp_character">
-              </div>
-              <div class="form-group">
-                <label for="result">Who won?</label>
-                <select required name="result" class="form-control" id="result">
-                  <option>Me</option>
-                  <option>Opponent</option>
-                </select>
-              </div>
-              <button  type="submit" class="btn btn-primary">Submit</button>
-            </form>
+              <%- include('../partials/form.ejs')  %> 
           </div>
     </div>
 </section>

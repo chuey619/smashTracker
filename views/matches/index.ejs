@@ -1,5 +1,7 @@
 
 <%- include('../partials/boilerplate.ejs')  %> 
+<div class="cover">
+
 
 <div class="input-group mb-3">
   <div class="input-group-prepend">
@@ -13,55 +15,42 @@
     </div>
   </div>
   <div class="form-inline" id="user-form"  style="width: 50%; display: none;">
-    <input id="user-value"  type="text" class="form-control">
+    <select data-user="<%=user.username%>" data-opponents="<%=opponents%>" class="form-control" id='opponent' name="opponent"></select>
     <button id="user-input" class="btn btn-outline-primary">Search!</button>
   </div>
   <div class="form-inline" id="char-form"  style="width: 50%; display: none;">
-    <input id="char-value"  type="text" class="form-control">
+    <select data-chars="<%= chars %>" class="charSelect form-control" required name="user1_char" id="character"></select>
     <button id="char-input" class="btn btn-outline-primary">Search!</button>
   </div>
   
 </div>
-<div class="row text-center matches-index">
-  <% let cardChar %> 
-  <% let cardUrl %> 
-  <% let cardOpponent %> 
-    <% for(let i = 0;  i < matches.length; i++) { %>
+<div style="margin: 0 auto;" class="matches-container" class="container-fluid">
+  <% for (let i = 0; i < 6 && i < matches.length; i++)  { %>
       <% if (user.username == matches[i].user1) { %>
-        <% cardChar = matches[i].user1Char %> 
-        <% cardUrl = matches[i].url1 %> 
-        <% cardOpponent = matches[i].user2 %> 
-       
-<% } else {%>
-     <% cardChar = matches[i].user2Char %> 
-     <% cardUrl = matches[i].url2 %> 
-     <% cardOpponent = matches[i].user1 %>
-<% } %> 
-        <div data-opponent="<%= cardOpponent %>" data-character="<%= cardChar %>" data-user="<%= user.username %>" data-loser="<%= matches[i].loser %>" data-winner="<%= matches[i].winner %>" class="card col-md-3 col-sm-6 col-xs-4" style="max-width: 273px; margin: 1%; padding: 0;" >
-            <img class="card-img-top" src="<%= cardUrl %>">
-            <div class="card-body <% if (user.username == matches[i].winner) { %>
-              winner
-             <% } else { %>
-             loser
-             <% } %>
-             ">
-             <h5 class="card-title"> <%= cardChar %>  </h5>
-              <p class="card-text">  <%= matches[i].date %> </p>
-              <div class="buttons">
-                <a href="/matches/<%= matches[i].id %>" class="btn btn-sm btn-primary">View</a>
-                <form action="/matches/<%= matches[i].id %>?_method=DELETE" method='POST' >
-                  <button class="btn btn-sm btn-danger">Delete</button>
-                </form>
-              </div>
-            </div>
+          <% cardChar = matches[i].user1Char %> 
+          <% cardUrl = matches[i].url1 %> 
+          <% cardOpponent = matches[i].user2 %> 
+         
+    <% } else {%>
+       <% cardChar = matches[i].user2Char %> 
+       <% cardUrl = matches[i].url2 %> 
+       <% cardOpponent = matches[i].user1 %>
+    <% } %> 
+      <div data-char="<%= cardChar %>" data-opponent="<%= cardOpponent %>" data-winner="<%= matches[i].winner %>" data-user="<%= user.username %>" class="card col-2">
+          <img class="card-img-top" src="<%= cardUrl %>">
+          <div  class="card-body">
+              <h5 class="card-title"> <a href="/matches/<%=matches[i].id %>">vs <%= cardOpponent %></a></h5>
+              <p class="card-text text-muted"><%= matches[i].date %></p>
           </div>
-        <% } %>
-      
+      </div>
+      <% } %> 
 </div>
+
 <div class="toCenter">
-    <a style="background-color: white;" href="/users"><button class="btn-lg btn-outline-primary">Go Back</button></a>
+    <a href="/users"><button class="btn-lg btn-outline-primary">Go Back</button></a>
 </div>
-<script src="/main/search.js">
+</div>
+<script src="/main/matchesIndex.js">
 
 </script>
 <%- include('../partials/end.ejs')  %>

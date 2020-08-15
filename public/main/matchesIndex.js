@@ -15,7 +15,7 @@ const losses = () => {
   const lossButton = document.querySelector("#losses");
   lossButton.addEventListener("click", () => {
     cards.forEach((card) => {
-      if (card.dataset.loser != card.dataset.user) {
+      if (card.dataset.winner == card.dataset.user) {
         card.style.display = "none";
       } else {
         card.style.display = "flex";
@@ -23,7 +23,6 @@ const losses = () => {
     });
   });
 };
-
 const all = () => {
   const allButton = document.querySelector("#all");
   allButton.addEventListener("click", () => {
@@ -32,20 +31,19 @@ const all = () => {
     });
   });
 };
-
 const byChar = () => {
   const userForm = document.querySelector("#user-form");
   const charButton = document.querySelector("#char-search");
   const charForm = document.querySelector("#char-form");
   const charSubmit = document.querySelector("#char-input");
-  const charValue = document.querySelector("#char-value");
+  const charValue = document.querySelector("#character");
   charButton.addEventListener("click", () => {
     userForm.style.display = "none";
     charForm.style.display = "inline";
   });
   charSubmit.addEventListener("click", () => {
     cards.forEach((card) => {
-      if (charValue.value != card.dataset.character) {
+      if (charValue.value != card.dataset.char) {
         card.style.display = "none";
       } else {
         card.style.display = "flex";
@@ -59,7 +57,7 @@ const byUser = () => {
   const userButton = document.querySelector("#user-search");
   const userForm = document.querySelector("#user-form");
   const userSubmit = document.querySelector("#user-input");
-  const userValue = document.querySelector("#user-value");
+  const userValue = document.querySelector("#opponent");
   userButton.addEventListener("click", () => {
     charForm.style.display = "none";
     userForm.style.display = "inline";
@@ -75,6 +73,39 @@ const byUser = () => {
     userForm.style.display = "none";
   });
 };
+const setColors = () => {
+  const cards = document.querySelectorAll(".card");
+  cards.forEach((card) => {
+    if (card.dataset.winner == card.dataset.user) {
+      card.classList.add("winner");
+    } else {
+      card.classList.add("loser");
+    }
+  });
+};
+const singleCharList = () => {
+  const select = document.querySelector("#character");
+  const charString = select.dataset.chars;
+  const chars = charString.split(",");
+  chars.forEach((char) => {
+    let option = document.createElement("option");
+    option.innerText = char;
+    select.appendChild(option);
+  });
+};
+const getUsers = () => {
+  const userSelect = document.querySelector("#opponent");
+  const userString = userSelect.dataset.opponents;
+  console.log(userString);
+  const users = userString.split(",");
+  users.forEach((user) => {
+    let option = document.createElement("option");
+    option.innerText = user;
+    if (userSelect.dataset.user != user && user != "Uknown") {
+      userSelect.appendChild(option);
+    }
+  });
+};
 
 const main = () => {
   wins();
@@ -82,6 +113,9 @@ const main = () => {
   all();
   byChar();
   byUser();
+  setColors();
+  singleCharList();
+  getUsers();
 };
 
 main();
