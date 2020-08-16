@@ -20,16 +20,9 @@ VALUES
 (3, 1, 2, 3, 'yesterday');
 
 
-SELECT * FROM users 
-JOIN matches
-ON users.id = matches.winner_id
-OR users.id = matches.loser_id
-JOIN chars
-ON matches.winner_char_id = chars.id
-OR matches.loser_char_id = chars.id
-WHERE matches.winner_id = 1 AND chars.name = 'wolf';
+
 
 INSERT INTO users
 (username, email, password_digest)
 VALUES
-('Uknown', 'test@test.com', 'abcdef');
+('Unknown', 'test@test.com', 'abcdef');

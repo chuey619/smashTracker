@@ -72,18 +72,7 @@ matchesController.create = async (req, res, next) => {
   }).save();
   await res.redirect("/users");
 };
-matchesController.update = (req, res) => {
-  Match.getById(req.params.id)
-    .then((match) => {
-      return match.update(req.body);
-    })
-    .then((updatedMatch) => {
-      res.redirect(`/matches/${updatedMatch.id}`);
-    })
-    .catch(() => {
-      res.redirect("back");
-    });
-};
+
 matchesController.delete = (req, res, next) => {
   Match.getById(req.params.id)
     .then((match) => {

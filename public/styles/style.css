@@ -117,3 +117,10 @@ footer p {
     margin: 0 auto;
     padding-top: 10%;
 }
+
+.show-buttons {
+    display: flex;
+    justify-content: space-around;
+    width: 30%;
+    margin: 0 auto;
+}

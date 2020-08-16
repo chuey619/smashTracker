@@ -151,25 +151,6 @@ class Match {
       });
   }
 
-  update(changes) {
-    Object.assign(this, changes);
-    return db
-      .oneOrNone(
-        `
-        UPDATE matches
-        SET
-        user1 = $/user1/,
-        user2 = $/user2/,
-        user1_char, $/user1Char/,
-        user2_char, $/user2Char/
-        WHERE id = $1
-        `,
-        this.id
-      )
-      .then((match) => {
-        return Object.assign(this, match);
-      });
-  }
   delete() {
     return db.oneOrNone(`DELETE FROM matches WHERE id = $1`, this.id);
   }

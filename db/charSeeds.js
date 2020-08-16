@@ -37,6 +37,3 @@ const main = async () => {
 };
 
 main();
-setTimeout(() => {
-  console.log(charList);
-}, 10000);

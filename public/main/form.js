@@ -20,7 +20,7 @@ const getUsers = () => {
   users.forEach((user) => {
     let option = document.createElement("option");
     option.innerText = user;
-    if (userSelect.dataset.user != user && user != "Uknown") {
+    if (userSelect.dataset.user != user && user != "Unknown") {
       userSelect.appendChild(option);
     }
   });

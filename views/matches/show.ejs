@@ -1,6 +1,6 @@
 
 <%- include('../partials/boilerplate.ejs')  %> 
-<section style="height: 100%;" class="container">
+<section style="height: 100vh;" class="container">
     <% if (user == match.winner) { %>
         <h1 style="text-align: center;" >Victory!</h1>
     <% } else { %>
@@ -32,8 +32,11 @@
               </div>
         </div>
     </div>
-    <div>
-        <a href="/matches/<%=match.id%>/edit"><button class="btn btn-outline-primary">Edit</button></a>
+    <div class="show-buttons">
+        <form action="/matches/<%= match.id %>?_method=DELETE" method='POST' >
+          <button class="btn  btn-outline-danger">Delete</button>
+        </form>
+        <a href="/matches"><button class="btn btn-outline-primary">Go back</button></a>
     </div>
 </section>
 <%- include('../partials/end.ejs')  %>
