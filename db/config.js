@@ -21,6 +21,4 @@ function setDatabase() {
     return db(process.env.DATABASE_URL);
   }
 }
-module.exports = db({
- setDatabase()
-});
+module.exports = setDatabase();
