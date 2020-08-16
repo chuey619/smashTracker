@@ -4,6 +4,7 @@ const User = require("../models/User"),
 const Match = require("../models/Match");
 const Character = require("../models/Character");
 const usersController = {};
+// gets all matches and gets all info needed for the form to make a new match
 usersController.index = async (req, res, next) => {
   const username = req.user.username;
   let chars = await Character.getAll();
@@ -31,6 +32,7 @@ usersController.index = async (req, res, next) => {
     opponents: usernames,
   });
 };
+//adds a new user
 usersController.create = (req, res, next) => {
   const salt = bcrypt.genSaltSync();
   const hash = bcrypt.hashSync(req.body.password, salt);

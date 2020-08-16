@@ -3,6 +3,7 @@ const Character = require("../models/Character");
 const User = require("../models/User");
 
 const matchHelpers = {};
+// gives info about who won match so he user only has to select me or opponent
 matchHelpers.decideWinner = async (req, res, next) => {
   if (req.body.result == "Me") {
     res.locals.winner = req.user.username;
