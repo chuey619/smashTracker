@@ -140,7 +140,7 @@ class Match {
     return db
       .one(
         `
-        INSERT INTO matches (user1, user2, date, winner, loser, user1Char, user2Char, url1, url2) 
+        INSERT INTO matches (user1, user2, date, winner, loser, user1char, user2char, url1, url2) 
         VALUES ($/user1/, $/user2/, $/date/, $/winner/, $/loser/, $/user1Char/, $/user2Char/, $/url1/, $/url2/)
             RETURNING *
         `,
