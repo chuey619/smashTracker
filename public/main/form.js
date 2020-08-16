@@ -1,3 +1,4 @@
+//gets all characters and adds them as options for the form
 const getChars = () => {
   const charSelects = document.querySelectorAll(".charSelect");
 
@@ -11,7 +12,7 @@ const getChars = () => {
     });
   }
 };
-
+//gets all users and adds them as options for the form
 const getUsers = () => {
   const userSelect = document.querySelector("#opponent");
   const userString = userSelect.dataset.opponents;

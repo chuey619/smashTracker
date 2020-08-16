@@ -1,4 +1,5 @@
 const cards = document.querySelectorAll(".card");
+// only display wins
 const wins = () => {
   const winButton = document.querySelector("#wins");
   winButton.addEventListener("click", () => {
@@ -11,6 +12,7 @@ const wins = () => {
     });
   });
 };
+//only display losses
 const losses = () => {
   const lossButton = document.querySelector("#losses");
   lossButton.addEventListener("click", () => {
@@ -23,6 +25,7 @@ const losses = () => {
     });
   });
 };
+//display all
 const all = () => {
   const allButton = document.querySelector("#all");
   allButton.addEventListener("click", () => {
@@ -31,6 +34,7 @@ const all = () => {
     });
   });
 };
+//display if char name is char that is being searched
 const byChar = () => {
   const userForm = document.querySelector("#user-form");
   const charButton = document.querySelector("#char-search");
@@ -52,6 +56,7 @@ const byChar = () => {
     charForm.style.display = "none";
   });
 };
+//display if username is username that was searched
 const byUser = () => {
   const charForm = document.querySelector("#char-form");
   const userButton = document.querySelector("#user-search");
@@ -73,6 +78,7 @@ const byUser = () => {
     userForm.style.display = "none";
   });
 };
+//sets box shadow colors depending on if it was a win or loss
 const setColors = () => {
   const cards = document.querySelectorAll(".card");
   cards.forEach((card) => {
@@ -83,6 +89,7 @@ const setColors = () => {
     }
   });
 };
+//sets options for search by char
 const singleCharList = () => {
   const select = document.querySelector("#character");
   const charString = select.dataset.chars;
@@ -93,6 +100,7 @@ const singleCharList = () => {
     select.appendChild(option);
   });
 };
+//sets options for search by user
 const getUsers = () => {
   const userSelect = document.querySelector("#opponent");
   const userString = userSelect.dataset.opponents;

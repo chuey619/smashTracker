@@ -1,10 +1,11 @@
+//gets all wins and losses to be displayed on user index
 const winsLosses = () => {
   let winBar = document.querySelector(".wins-bar");
   winBar.style.width = winBar.dataset.percent.substring(0, 4) + "%";
   let lossesBar = document.querySelector(".losses-bar");
   lossesBar.style.width = lossesBar.dataset.percent.substring(0, 4) + "%";
 };
-
+//sets box shadow colors
 const setColors = () => {
   const cards = document.querySelectorAll(".card");
   cards.forEach((card) => {
