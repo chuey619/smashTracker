@@ -1,4 +1,4 @@
-const Match = require("../models/match");
+const Match = require("../models/Match");
 const User = require("../models/User");
 const matchesController = {};
 const moment = require("moment");
