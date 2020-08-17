@@ -1,13 +1,13 @@
 # smashTracker
- in this app you can track your smash bros match history 
+ - in this app you can track your smash bros match history 
  
 # technologies 
-i used bootstrap and js for the frontend and node, express, passport, and sql for the backend. i will use moment js to keep track of the time when matches are played
+- i used bootstrap and js for the frontend and node, express, passport, and sql for the backend. i will use moment js to keep track of the time when matches are played
 
 # how to use
-login in or sign up then start adding matches
-add a match by selecting your character, your opponent, their character, and who won
-you will be able to see your match history for each character and also against other users of the app
+- login in or sign up then start adding matches
+- add a match by selecting your character, your opponent, their character, and who won
+- you will be able to see your match history for each character and also against other users of the app
 
 # user stories
 - i want to be able to login or register when i enter the app
