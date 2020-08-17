@@ -124,3 +124,18 @@ footer p {
     width: 30%;
     margin: 0 auto;
 }
+#matches-index {
+    height: 100vh;
+}
+@media only screen and (max-width: 400px) {
+    #matches-index {
+        height: 100%;
+    }
+    .main-container {
+     height: 100%;
+    }
+    #show-container {
+        display: flex;
+        flex-direction: column;
+    }
+  }

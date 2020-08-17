@@ -26,7 +26,7 @@
                  <% cardUrl = matches[i].url2 %> 
                  <% cardOpponent = matches[i].user1 %>
               <% } %> 
-                <div data-winner="<%= matches[i].winner %>" data-user="<%= user.username %>" class="card col-xs-1 col-5">
+                <div data-winner="<%= matches[i].winner %>" data-user="<%= user.username %>" class="card col-xs-12 col-5">
                     <img class="card-img-top" src="<%= cardUrl %>">
                     <div  class="card-body">
                         <h5 class="card-title"> <a href="/matches/<%=matches[i].id %>">vs <%= cardOpponent %></a></h5>
