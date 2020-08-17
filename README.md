@@ -6,6 +6,7 @@ i used bootstrap and js for the frontend and node, express, passport, and sql fo
 
 # how to use
 login in or sign up then start adding matches
+add a match by selecting your character, your opponent, their character, and who won
 you will be able to see your match history for each character and also against other users of the app
 
 # user stories
