@@ -19,8 +19,8 @@ you will be able to see your match history for each character and also against o
 # wireframes
 - https://files.slack.com/files-pri/T0351JZQ0-F018Y9LE6BB/image.png
 
-#trello
+# trello
 - https://trello.com/b/hKpEKa9q/smashtracker
 
-#heroku 
+# heroku 
 - https://agile-cliffs-01660.herokuapp.com/
